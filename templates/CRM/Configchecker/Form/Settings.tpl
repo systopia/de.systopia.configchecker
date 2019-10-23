@@ -1,27 +1,56 @@
-{* HEADER *}
+{*-------------------------------------------------------+
+| SYSTOPIA Configchecker Extension                        |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: P. Batroff (batroff@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++-------------------------------------------------------*}
 
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="top"}
-</div>
+<br/><h3>{ts domain='de.systopia.configchecker'}PHP Configuration Check Values{/ts}</h3><br/>
 
-{* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
-
-{foreach from=$elementNames item=elementName}
+<div class="crm-section configchecker configchecker">
   <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
-    <div class="content">{$form.$elementName.html}</div>
+    <div class="label">{$form.check_config_notification_email.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-notification-email","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_notification_email.html}</div>
     <div class="clear"></div>
   </div>
-{/foreach}
 
-{* FIELD EXAMPLE: OPTION 2 (MANUAL LAYOUT)
+  <br/>
+  <h3>{ts domain='de.systopia.configchecker'}PHP Configuration Check Values{/ts}</h3><br/>
 
-  <div>
-    <span>{$form.favorite_color.label}</span>
-    <span>{$form.favorite_color.html}</span>
+  <div class="crm-section">
+    <div class="label">{$form.check_config_max_execution_time.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-max_execution_time","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_max_execution_time.html}</div>
+    <div class="clear"></div>
   </div>
+  <div class="crm-section">
+    <div class="label">{$form.check_config_memory_limit.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-memory_limit","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_memory_limit.html}</div>
+    <div class="clear"></div>
+  </div>
+  <div class="crm-section">
+    <div class="label">{$form.check_config_input_time.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-input_time","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_input_time.html}</div>
+    <div class="clear"></div>
+  </div>
+  <div class="crm-section">
+    <div class="label">{$form.check_config_max_file_uploads.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-max_file_uploads","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_max_file_uploads.html}</div>
+    <div class="clear"></div>
+  </div>
+  <div class="crm-section">
+    <div class="label">{$form.check_config_post_max_size.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}PHP Check{/ts}", {literal}{"id":"id-configchecker-post_max_size","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_post_max_size.html}</div>
+    <div class="clear"></div>
+  </div>
+</div>
 
-{* FOOTER *}
 <div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="bottom"}
+    {include file="CRM/common/formButtons.tpl" location="bottom"}
 </div>
