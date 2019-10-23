@@ -1,0 +1,38 @@
+{*-------------------------------------------------------+
+| SYSTOPIA MailingTools Extension                        |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: P. Batroff (batroff@systopia.d                 |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++-------------------------------------------------------*}
+
+
+{htxt id="id-configchecker-notification-email"}
+  <p>{ts domain="de.systopia.configchecker"}This email will be notified, if the config in this form differs from the System Config.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-max_execution_time"}
+  <p>{ts domain="de.systopia.configchecker"}Checks PHP max_execution_time against this value and sends a mail in case of a difference.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-memory_limit"}
+  <p>{ts domain="de.systopia.configchecker"}Checks PHP memory_limit against this value and sends a mail in case of a difference.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-input_time"}
+  <p>{ts domain="de.systopia.configchecker"}Checks PHP input_time against this value and sends a mail in case of a difference.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-max_file_uploads"}
+  <p>{ts domain="de.systopia.configchecker"}Checks PHP max_file_uploads against this value and sends a mail in case of a difference.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-post_max_size"}
+  <p>{ts domain="de.systopia.configchecker"}Checks PHP post_max_size against this value and sends a mail in case of a difference.{/ts}</p>
+{/htxt}
