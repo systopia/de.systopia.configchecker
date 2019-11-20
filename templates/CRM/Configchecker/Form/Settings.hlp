@@ -1,5 +1,5 @@
 {*-------------------------------------------------------+
-| SYSTOPIA MailingTools Extension                        |
+| SYSTOPIA Configchecker Extension                       |
 | Copyright (C) 2019 SYSTOPIA                            |
 | Author: P. Batroff (batroff@systopia.d                 |
 +--------------------------------------------------------+
@@ -15,6 +15,10 @@
 
 {htxt id="id-configchecker-notification-email"}
   <p>{ts domain="de.systopia.configchecker"}This email will be notified, if the config in this form differs from the System Config.{/ts}</p>
+{/htxt}
+
+{htxt id="id-configchecker-notification-from-email"}
+  <p>{ts domain="de.systopia.configchecker"}This will be the sender Address from which the notification is sent.{/ts}</p>
 {/htxt}
 
 {htxt id="id-configchecker-max_execution_time"}

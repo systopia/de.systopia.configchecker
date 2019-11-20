@@ -24,7 +24,7 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
   public function buildQuickForm() {
 
     // get current settings
-    $config = CRM_Mailingtools_Config::singleton();
+    $config = CRM_Configchecker_Config::singleton();
     $current_values = $config->getSettings();
 
     // add form elements
@@ -32,6 +32,13 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
       'text',
       'check_config_notification_email',
       E::ts('Notification Email'),
+      array("class" => "huge"),
+      TRUE
+    );
+    $this->add(
+      'text',
+      'check_config_notification_from_email',
+      E::ts('Notification Sender Email'),
       array("class" => "huge"),
       TRUE
     );
@@ -45,35 +52,35 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
     //- post_max_size
     $this->add(
       'text',
-      'check_config_max_execution_time',
+      'check_php_config_max_execution_time',
       E::ts('PHP Max Execution Time'),
       array("class" => "huge"),
       FALSE
     );
     $this->add(
       'text',
-      'check_config_memory_limit',
+      'check_php_config_memory_limit',
       E::ts('PHP Memory Limit'),
       array("class" => "huge"),
       FALSE
     );
     $this->add(
       'text',
-      'check_config_input_time',
+      'check_php_config_max_input_time',
       E::ts('PHP Input Time'),
       array("class" => "huge"),
       FALSE
     );
     $this->add(
       'text',
-      'check_config_max_file_uploads',
+      'check_php_config_upload_max_filesize',
       E::ts('PHP Max File Uploads'),
       array("class" => "huge"),
       FALSE
     );
     $this->add(
       'text',
-      'check_config_post_max_size',
+      'check_php_config_post_max_size',
       E::ts('PHP Post Max Size'),
       array("class" => "huge"),
       FALSE
@@ -114,11 +121,12 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
   protected function getSettingsInForm() {
     return array(
       'check_config_notification_email',
-      'check_config_max_execution_time',
-      'check_config_memory_limit',
-      'check_config_input_time',
-      'check_config_max_file_uploads',
-      'check_config_post_max_size',
+      'check_config_notification_from_email',
+      'check_php_config_max_execution_time',
+      'check_php_config_memory_limit',
+      'check_php_config_max_input_time',
+      'check_php_config_upload_max_filesize',
+      'check_php_config_post_max_size',
     );
   }
 
