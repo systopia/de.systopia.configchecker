@@ -3,7 +3,7 @@
   <item>
     <path>civicrm/admin/setting/configchecker</path>
     <page_callback>CRM_Configchecker_Form_Settings</page_callback>
-    <title>Settings</title>
+    <title>ConfigChecker Settings</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
 </menu>

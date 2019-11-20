@@ -23,12 +23,14 @@ class CRM_Configchecker_Config {
   private static $singleton = NULL;
   private static $settings  = NULL;
 
+  protected $jobs = NULL;
+
   /**
    * get the config instance
    */
   public static function singleton() {
     if (self::$singleton === NULL) {
-      self::$singleton = new CRM_Mailingtools_Config();
+      self::$singleton = new CRM_Configchecker_Config();
     }
     return self::$singleton;
   }
