@@ -55,6 +55,7 @@ function configchecker_civicrm_uninstall() {
  */
 function configchecker_civicrm_enable() {
   _configchecker_civix_civicrm_enable();
+  CRM_Configchecker_Config::installScheduledJob();
 }
 
 /**
