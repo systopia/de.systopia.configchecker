@@ -50,14 +50,14 @@ class CRM_Configchecker_Mailer {
     $this->email_from = $email_from_address;
   }
 
-  public function send_mail($content) {
+  public function send_mail($notification_content) {
     $values = [];
     $values['to_name'] = 'Alert Receiver';
-    $values['tp_email'] = $this->notification_email;
+    $values['to_email'] = $this->notification_email;
     $values['id'] = $this->get_template();
     $values['from'] = $this->email_from;
     $values['contact_id'] = $this->sender_contact_id;
-    $values['template_params'] = $this->get_smarty_variables($content);
+    $values['template_params'] = $this->get_smarty_variables($notification_content);
 
     $result = civicrm_api3('MessageTemplate', 'send', $values);
     if ($result['is_error'] == '1') {
@@ -66,9 +66,10 @@ class CRM_Configchecker_Mailer {
     return TRUE;
   }
 
-  private function get_smarty_variables($content) {
-    // TODO: implement me
-
+  private function get_smarty_variables($notification_content) {
+    $smarty_vars = [];
+    $smarty_vars['change_data'] = $notification_content;
+    return $smarty_vars;
   }
 
   private function get_template() {
@@ -82,6 +83,7 @@ class CRM_Configchecker_Mailer {
     if ($result['count'] == '0') {
       return $this->create_template();
     }
+    return $result['id'];
   }
 
   /**
@@ -92,7 +94,7 @@ class CRM_Configchecker_Mailer {
    * @throws \CiviCRM_API3_Exception
    */
   private function create_template() {
-    $template_content = file_get_contents(__DIR__ . "/../../templates/mailer_template.tpl");
+    $template_content = file_get_contents(__DIR__ . "/../../templates/CRM/Configchecker/mailer_template.tpl");
     $result = civicrm_api3('MessageTemplate', 'create', [
       'sequential'  => 1,
       'msg_title'   => $this->template_name,

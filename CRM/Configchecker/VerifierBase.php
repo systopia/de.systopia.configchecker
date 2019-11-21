@@ -41,8 +41,8 @@ abstract class CRM_Configchecker_VerifierBase {
     }
     // TODO: add template name and subject?
     $mailer = new CRM_Configchecker_Mailer();
-    // TODO
-//    $mail
+    // send mail
+    $mailer->send_mail($this->notifications);
   }
 
   protected function get_settings($pattern) {

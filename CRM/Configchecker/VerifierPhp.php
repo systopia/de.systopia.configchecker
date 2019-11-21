@@ -33,7 +33,6 @@ class CRM_Configchecker_VerifierPhp extends CRM_Configchecker_VerifierBase {
   public function verify_config() {
     $php_config = $this->get_settings("/check_php_config.*/");
     foreach ($php_config as $key => $php_value) {
-      // TODO: remove
       $this->verify_php_value($key, $php_value);
     }
   }
@@ -46,10 +45,11 @@ class CRM_Configchecker_VerifierPhp extends CRM_Configchecker_VerifierBase {
    */
   private function verify_php_value($php_config_name, $value) {
 
-    $system_php_val = ini_get($this->parse_config_param($php_config_name));
+    $php_parameter = $this->parse_config_param($php_config_name);
+    $system_php_val = ini_get($php_parameter);
     if ($system_php_val != $value) {
-      $this->notifications[$php_config_name]['configured'] = $value;
-      $this->notifications[$php_config_name]['system']     = $system_php_val;
+      $this->notifications[$php_parameter]['configured'] = $value;
+      $this->notifications[$php_parameter]['system']     = $system_php_val;
       $this->log("Misconfigured PHP Config detected. Configured Value: {$value} != {$system_php_val} (php System value)");
     }
   }

@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  {foreach from=$change_data item=cf_name key=cf_value}
+  {foreach from=$change_data item=cf_value key=cf_name}
     <tr>
       <th style="text-align: left;min-width: 500px; border: 1px solid black; padding: 0.5em;">{$cf_name}</th>
       <td style="text-align: left;min-width: 300px; border: 1px solid black; padding: 0.5em;">{$cf_value.configured}</td>
@@ -18,4 +18,5 @@
     </tr>
   {/foreach}
   </tbody>
+
 </table>

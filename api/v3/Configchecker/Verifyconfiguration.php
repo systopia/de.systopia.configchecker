@@ -23,6 +23,7 @@ function _civicrm_api3_configchecker_Verifyconfiguration_spec(&$spec) {
  * @throws API_Exception
  */
 function civicrm_api3_configchecker_Verifyconfiguration($params) {
+  // currently we only verify PHP configuration
   $php_verifier = new CRM_Configchecker_VerifierPhp();
   $php_verifier->verify_config();
   $php_verifier->send_notifications();
