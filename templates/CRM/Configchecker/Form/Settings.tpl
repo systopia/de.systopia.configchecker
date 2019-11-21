@@ -16,6 +16,12 @@
 
 <div class="crm-section configchecker configchecker">
   <div class="crm-section">
+    <div class="label">{$form.send_notification_mail.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Send Notification Emails{/ts}", {literal}{"id":"id-configchecker-send-notifications","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.send_notification_mail.html}</div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="crm-section">
     <div class="label">{$form.check_config_notification_email.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-notification-email","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
     <div class="content">{$form.check_config_notification_email.html}</div>
     <div class="clear"></div>
