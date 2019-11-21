@@ -4,6 +4,7 @@
     <path>civicrm/admin/setting/configchecker</path>
     <page_callback>CRM_Configchecker_Form_Settings</page_callback>
     <title>ConfigChecker Settings</title>
-    <access_arguments>access CiviCRM</access_arguments>
-  </item>
+    <access_arguments>administer CiviCRM</access_arguments>
+    <adminGroup>System Settings</adminGroup>  </item>
+    <weight>100</weight>
 </menu>
