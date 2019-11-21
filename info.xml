@@ -9,18 +9,18 @@
     <email>batroff@systopia.de</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
+    <url desc="Main Extension Page">https://github.com/systopia/de.systopia.configchecker</url>
+    <url desc="Documentation">https://github.com/systopia/de.systopia.configchecker</url>
+    <url desc="Support">https://github.com/systopia/de.systopia.configchecker</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2019-10-23</releaseDate>
+  <releaseDate>2019-11-21</releaseDate>
   <version>0.1</version>
-  <develStage>alpha</develStage>
+  <develStage>beta</develStage>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <comments>Currently only PHP parameters at runtime can be checked and verified. If configured, an Notification Email is sent. A scheduled job is installed, but needs to be activated.</comments>
   <civix>
     <namespace>CRM/Configchecker</namespace>
   </civix>
