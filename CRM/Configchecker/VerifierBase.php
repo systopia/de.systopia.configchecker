@@ -31,18 +31,20 @@ abstract class CRM_Configchecker_VerifierBase {
 
   /**
    * Gets all php related settings
+   * @return mixed
    */
   abstract public function verify_config();
 
   public function send_notifications() {
     // TODO: send notification Email
     if (empty($this->notifications)) {
-      return;
+      return FALSE;
     }
     // TODO: add template name and subject?
     $mailer = new CRM_Configchecker_Mailer();
     // send mail
     $mailer->send_mail($this->notifications);
+    return TRUE;
   }
 
   protected function get_settings($pattern) {
