@@ -23,10 +23,15 @@ function _civicrm_api3_configchecker_Verifyconfiguration_spec(&$spec) {
  * @throws API_Exception
  */
 function civicrm_api3_configchecker_Verifyconfiguration($params) {
-  // currently we only verify PHP configuration
-  $php_verifier = new CRM_Configchecker_VerifierPhp();
-  $php_verifier->verify_config();
-  $php_verifier->send_notifications();
 
-  return civicrm_api3_create_success([], $params, 'Configchecker', 'verifyconfiguration');
+  try {
+    // currently we only verify PHP configuration
+    $php_verifier = new CRM_Configchecker_VerifierPhp();
+    $php_verifier->verify_config();
+    $php_verifier->send_notifications();
+
+    return civicrm_api3_create_success(['result' => "Verified configuration"], $params, 'Configchecker', 'verifyconfiguration');
+  } catch (Exception $e) {
+    return civicrm_api3_create_error("Error occurred in config checker. Exception Message: " . $e->getMessage());
+  }
 }
