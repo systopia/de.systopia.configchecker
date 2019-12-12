@@ -21,11 +21,13 @@ use CRM_Configchecker_ExtensionUtil as E;
 class CRM_Configchecker_Mailer {
 
   private $template_name = 'config_checker_template';
-  private $template_subject = 'Config Checker Alert';
+  private $template_subject = 'Config Checker Alert for ';
   private $email_name_from         = 'CiviCRM Alerts';
   private $sender_contact_id = '2';
   private $email_from;
   private $notification_email;
+
+  private $baseUrl = NULL;
 
   /**
    * CRM_Configchecker_Mailer constructor.
@@ -40,6 +42,9 @@ class CRM_Configchecker_Mailer {
       $this->template_subject = $template_subject;
     }
     $config = CRM_Configchecker_Config::singleton();
+    $base_url = $this->getBaseUrl();
+
+    $this->template_subject = $this->template_subject . $base_url;
 
     $email_address = $config->getSetting('check_config_notification_email');
     $email_from_address = $config->getSetting('check_config_notification_from_email');
@@ -69,6 +74,7 @@ class CRM_Configchecker_Mailer {
   private function get_smarty_variables($notification_content) {
     $smarty_vars = [];
     $smarty_vars['change_data'] = $notification_content;
+    $smarty_vars['hostname'] = $this->baseUrl;
     return $smarty_vars;
   }
 
@@ -105,6 +111,17 @@ class CRM_Configchecker_Mailer {
       throw new Exception("Couldn't create message template.");
     }
     return $result['id'];
+  }
+
+  /**
+   * @return string|NULL
+   */
+  private function getBaseUrl() {
+    if ($this->baseUrl === NULL) {
+      $this->baseUrl = parse_url(CIVICRM_UF_BASEURL, PHP_URL_HOST);
+      return $this->baseUrl;
+    }
+    return $this->baseUrl;
   }
 
   /**

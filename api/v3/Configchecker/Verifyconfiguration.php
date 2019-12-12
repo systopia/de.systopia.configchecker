@@ -32,7 +32,7 @@ function civicrm_api3_configchecker_Verifyconfiguration($params) {
       return civicrm_api3_create_success(['action_taken' => "Detected config change, notification mail was sent."], $params, 'Configchecker', 'verifyconfiguration');
     }
     return civicrm_api3_create_success(['action_taken' => "Configuration is ok."], $params, 'Configchecker', 'verifyconfiguration');
-    
+
   } catch (Exception $e) {
     return civicrm_api3_create_error("Error occurred in config checker. Exception Message: " . $e->getMessage());
   }

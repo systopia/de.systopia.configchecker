@@ -1,4 +1,4 @@
-<h2>CiviCRM Alert for Config changes</h2>
+<h2>CiviCRM Alert for Config changes on {$hostname}</h2>
 
 
 <table style="width: 80%; table-layout: fixed;  border-collapse: collapse;">
