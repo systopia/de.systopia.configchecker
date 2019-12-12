@@ -28,10 +28,14 @@ function civicrm_api3_configchecker_Verifyconfiguration($params) {
     // currently we only verify PHP configuration
     $php_verifier = new CRM_Configchecker_VerifierPhp();
     $php_verifier->verify_config();
-    if ($php_verifier->send_notifications()) {
+    if ( $php_verifier->send_notifications()) {
       return civicrm_api3_create_success(['action_taken' => "Detected config change, notification mail was sent."], $params, 'Configchecker', 'verifyconfiguration');
     }
-    return civicrm_api3_create_success(['action_taken' => "Configuration is ok."], $params, 'Configchecker', 'verifyconfiguration');
+    if ($php_verifier->has_notifications()) {
+      return civicrm_api3_create_success(['action_taken' => "Detected config change, No notification Mail has been sent."], $params, 'Configchecker', 'verifyconfiguration');
+    } else {
+      return civicrm_api3_create_success(['action_taken' => "Configuration is ok."], $params, 'Configchecker', 'verifyconfiguration');
+    }
 
   } catch (Exception $e) {
     return civicrm_api3_create_error("Error occurred in config checker. Exception Message: " . $e->getMessage());

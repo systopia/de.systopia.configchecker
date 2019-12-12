@@ -55,7 +55,6 @@ function configchecker_civicrm_uninstall() {
  */
 function configchecker_civicrm_enable() {
   _configchecker_civix_civicrm_enable();
-  CRM_Configchecker_Config::installScheduledJob();
 }
 
 /**
@@ -122,6 +121,30 @@ function configchecker_civicrm_angularModules(&$angularModules) {
  */
 function configchecker_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   _configchecker_civix_civicrm_alterSettingsFolders($metaDataFolders);
+}
+
+/**
+ * Implements hook_civicrm_check().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_check/
+ */
+function configchecker_civicrm_check(&$messages) {
+  $php_checker = new CRM_Configchecker_VerifierPhp();
+  $php_checker->php_config_warning($messages);
+  $php_checker->php_version_warning($messages);
+}
+
+/**
+ * Implements hook_civicrm_check().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_check/
+ */
+function configchecker_civicrm_apiWrappers(&$wrappers, $apiRequest) {
+  // TODO:check version of CLI and save it to settings.
+  if ($apiRequest['entity'] == 'Job' && $apiRequest['action'] == 'execute') {
+    $php_checker = new CRM_Configchecker_VerifierPhp();
+    $php_checker->set_php_cli_version();
+  }
 }
 
 /**

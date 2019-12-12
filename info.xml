@@ -15,12 +15,12 @@
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
   <releaseDate>2019-12-12</releaseDate>
-  <version>0.2</version>
+  <version>0.3_dev</version>
   <develStage>beta</develStage>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>Currently only PHP parameters at runtime can be checked and verified. If configured, an Notification Email is sent. A scheduled job is installed, but needs to be activated.</comments>
+  <comments>Currently only PHP parameters at runtime can be checked and verified. If configured, an Notification Email can be sent either when visiting the status site or once a day.</comments>
   <civix>
     <namespace>CRM/Configchecker</namespace>
   </civix>

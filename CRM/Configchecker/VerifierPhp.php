@@ -67,4 +67,63 @@ class CRM_Configchecker_VerifierPhp extends CRM_Configchecker_VerifierBase {
     }
     return NULL;
   }
+
+  /**
+   * @param $messages
+   */
+  public function php_version_warning(&$messages) {
+    $config = CRM_Configchecker_Config::singleton();
+    $configured_php_version = $config->getSetting('php_version');
+    $live_php_version = $this->get_php_version();
+
+    if ($configured_php_version != $live_php_version) {
+      $warning = new CRM_Utils_Check_Message(
+        'de.systopia.configchecker_php_version_missmatch',
+        ts('PHP Version inconsistency detected between CLI and runtime. Please contact your admin'),
+        ts('PHP Version inconsistency'),
+        \Psr\Log\LogLevel::ALERT
+      );
+      $messages[] = $warning;
+    }
+  }
+
+  public function set_php_cli_version() {
+    $config = CRM_Configchecker_Config::singleton();
+    $settings = $config->getSettings();
+    $settings['php_version'] = $this->get_php_version();
+
+    $config->setSettings($settings);
+  }
+
+  /**
+   * @param $messages
+   */
+  public function php_config_warning(&$messages) {
+    $this->verify_config();
+    if (empty($this->notifications)) {
+      return;
+    }
+    // create notification Message
+    $notification_string = "<p>";
+    foreach ($this->notifications as $php_config_param => $values) {
+      $notification_string = $notification_string . "<li><b>{$php_config_param}</b>: Configured Value: {$values['configured']}, Detected System Value: {$values['system']}</li>";
+    }
+    $notification_string = $notification_string . "</p>";
+
+    // notification object, see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_check/
+    $warning = new CRM_Utils_Check_Message(
+      'de.systopia.configchecker_config_missmatch',
+      $notification_string,
+      ts('PHP Config mismach'),
+      \Psr\Log\LogLevel::ALERT
+    );
+    $messages[] = $warning;
+  }
+
+  /**
+   * @return string
+   */
+  public function get_php_version() {
+    return phpversion();
+  }
 }

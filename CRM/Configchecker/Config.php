@@ -70,36 +70,4 @@ class CRM_Configchecker_Config {
     CRM_Core_BAO_Setting::setItem($settings, 'de.systopia.Configchecker', 'Configchecker_settings');
   }
 
-  /**
-   * Install a scheduled job if there isn't one already
-   */
-  public static function installScheduledJob() {
-    $config = self::singleton();
-    $jobs = $config->getScheduledJobs();
-    if (empty($jobs)) {
-      // none found? create a new one
-      civicrm_api3('Job', 'create', array(
-        'api_entity'    => 'Configchecker',
-        'api_action'    => 'verifyconfiguration',
-        'run_frequency' => 'Daily',
-        'name'          => E::ts('Verify Configuration'),
-        'description'   => E::ts('Verifies Configuration for e.g. PHP, and matches against configured values. In case of a difference, a notification email will be sent.'),
-        'is_active'     => '0'));
-    }
-  }
-
-  /**
-   * get all scheduled jobs that trigger the dispatcher
-   */
-  public function getScheduledJobs() {
-    if ($this->jobs === NULL) {
-      // find all scheduled jobs calling Sqltask.execute
-      $query = civicrm_api3('Job', 'get', array(
-        'api_entity'   => 'Configchecker',
-        'api_action'   => 'verifyconfiguration',
-        'option.limit' => 0));
-      $this->jobs = $query['values'];
-    }
-    return $this->jobs;
-  }
-}
+ }

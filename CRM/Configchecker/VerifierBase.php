@@ -35,18 +35,27 @@ abstract class CRM_Configchecker_VerifierBase {
    */
   abstract public function verify_config();
 
+  /**
+   * @return bool
+   * @throws \Exception
+   */
   public function send_notifications() {
-    // TODO: send notification Email
-    if (empty($this->notifications)) {
+
+    $config = CRM_Configchecker_Config::singleton();
+    if (empty($this->notifications) || !$config->getSetting('send_notification_mail')) {
       return FALSE;
     }
-    // TODO: add template name and subject?
     $mailer = new CRM_Configchecker_Mailer();
     // send mail
     $mailer->send_mail($this->notifications);
     return TRUE;
   }
 
+  /**
+   * @param $pattern
+   *
+   * @return array
+   */
   protected function get_settings($pattern) {
     $config = CRM_Configchecker_Config::singleton();
     $settings = $config->getSettings();
@@ -59,6 +68,19 @@ abstract class CRM_Configchecker_VerifierBase {
     return $result_settings;
   }
 
+  /**
+   * @return bool
+   */
+  public function has_notifications() {
+    if (empty($this->notifications)) {
+      return FALSE;
+    }
+    return TRUE;
+  }
+
+  /**
+   * @param $message
+   */
   protected function log($message) {
     CRM_Core_Error::debug_log_message("[de.systopia.configchecker] " . $message);
   }
