@@ -118,6 +118,9 @@ class CRM_Configchecker_VerifierPhp extends CRM_Configchecker_VerifierBase {
       \Psr\Log\LogLevel::ALERT
     );
     $messages[] = $warning;
+
+    // if
+    $this->send_notifications();
   }
 
   /**
