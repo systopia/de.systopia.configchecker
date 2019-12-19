@@ -89,7 +89,10 @@ class CRM_Configchecker_Mailer {
    */
   private function need_notificaton() {
     $config = CRM_Configchecker_Config::singleton();
-    $last_notification_time = $config->getSettings('last_email_sent');
+    $last_notification_time = $config->getSetting('last_email_sent');
+    if (!isset($last_notification_time)) {
+      return TRUE;
+    }
     if ((time() - $last_notification_time) < 86400) {
       return FALSE;
     }
