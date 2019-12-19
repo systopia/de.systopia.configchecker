@@ -55,7 +55,17 @@ class CRM_Configchecker_Mailer {
     $this->email_from = $email_from_address;
   }
 
+  /**
+   * sends a notification email to the configured email address
+   * @param $notification_content
+   *
+   * @return bool
+   * @throws \CiviCRM_API3_Exception
+   */
   public function send_mail($notification_content) {
+    if (!$this->need_notificaton()) {
+      return FALSE;
+    }
     $values = [];
     $values['to_name'] = 'Alert Receiver';
     $values['to_email'] = $this->notification_email;
@@ -68,9 +78,40 @@ class CRM_Configchecker_Mailer {
     if ($result['is_error'] == '1') {
       throw new Exception("API Error sending Emails to {$this->template_name}");
     }
+    $this->set_last_mailing_time();
     return TRUE;
   }
 
+  /**
+   * Checks if a notification is needed. Default setting is send one Mail every 24h
+   * TODO: make the 24h configurable
+   * @return bool
+   */
+  private function need_notificaton() {
+    $config = CRM_Configchecker_Config::singleton();
+    $last_notification_time = $config->getSettings('last_email_sent');
+    if ((time() - $last_notification_time) < 86400) {
+      return FALSE;
+    }
+    return TRUE;
+  }
+
+  /**
+   * sets the timestamp for the last mailing time
+   */
+  private function set_last_mailing_time() {
+    $config = CRM_Configchecker_Config::singleton();
+    $settings = $config->getSettings();
+    $settings['last_email_sent'] = time();
+    $config->setSettings($settings);
+  }
+
+  /**
+   * Gathers Smarty variables
+   * @param $notification_content
+   *
+   * @return array
+   */
   private function get_smarty_variables($notification_content) {
     $smarty_vars = [];
     $smarty_vars['change_data'] = $notification_content;
