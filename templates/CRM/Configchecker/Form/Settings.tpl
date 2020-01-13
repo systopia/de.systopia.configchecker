@@ -12,7 +12,7 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*}
 
-<br/><h3>{ts domain='de.systopia.configchecker'}PHP Configuration Check Values{/ts}</h3><br/>
+<br/><h3>{ts domain='de.systopia.configchecker'}Configchecker  - Notification Settings{/ts}</h3><br/>
 
 <div class="crm-section configchecker configchecker">
   <div class="crm-section">
@@ -34,7 +34,7 @@
   </div>
 
   <br/>
-  <h3>{ts domain='de.systopia.configchecker'}PHP Configuration Check Values{/ts}</h3><br/>
+  <h3>{ts domain='de.systopia.configchecker'}Expected PHP Configuration{/ts}</h3><br/>
 
   <div class="crm-section">
     <div class="label">{$form.check_php_config_max_execution_time.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification Email{/ts}", {literal}{"id":"id-configchecker-max_execution_time","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
