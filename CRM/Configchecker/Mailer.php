@@ -20,10 +20,11 @@ use CRM_Configchecker_ExtensionUtil as E;
  */
 class CRM_Configchecker_Mailer {
 
+  const FALLBACK_SENDER_CONTACT_ID = 2;
   private $template_name = 'config_checker_template';
   private $template_subject = 'Config Checker Alert for ';
   private $email_name_from         = 'CiviCRM Alerts';
-  private $sender_contact_id = '2';
+  private $sender_contact_id;
   private $email_from;
   private $notification_email;
 
@@ -48,11 +49,22 @@ class CRM_Configchecker_Mailer {
 
     $email_address = $config->getSetting('check_config_notification_email');
     $email_from_address = $config->getSetting('check_config_notification_from_email');
-    if (empty($email_address) || empty($email_from_address)) {
+    $email_from_contact = $config->getSetting('check_config_notification_from_contact');
+    if (empty($email_from_contact)) {
+      $email_from_contact = self::FALLBACK_SENDER_CONTACT_ID;
+    }
+    // Check whether the contact exists.
+    try {
+      $email_from_contact = civicrm_api3('Contact', 'getvalue', ['id' => $email_from_contact, 'return' => 'id']);
+    } catch (\CiviCRM_API3_Exception $ex) {
+      $email_from_contact = null;
+    }
+    if (empty($email_address) || empty($email_from_address) || empty($email_from_contact)) {
       throw new Exception("No notification or sender Address configured.");
     }
     $this->notification_email = $email_address;
     $this->email_from = $email_from_address;
+    $this->sender_contact_id = $email_from_contact;
   }
 
   /**

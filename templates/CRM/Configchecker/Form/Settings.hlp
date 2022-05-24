@@ -25,6 +25,10 @@
   <p>{ts domain="de.systopia.configchecker"}This will be the sender Address from which the notification is sent.{/ts}</p>
 {/htxt}
 
+{htxt id="id-configchecker-notification-from-contact"}
+  <p>{ts domain="de.systopia.configchecker"}This will be the sender Contact from which the notification is sent.{/ts}</p>
+{/htxt}
+
 {htxt id="id-configchecker-max_execution_time"}
   <p>{ts domain="de.systopia.configchecker"}Checks PHP max_execution_time against this value and sends a mail in case of a difference.{/ts}</p>
 {/htxt}

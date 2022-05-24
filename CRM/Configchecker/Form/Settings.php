@@ -40,6 +40,11 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
       E::ts('Notification Sender Email'),
       array("class" => "huge")
     );
+    $this->addEntityRef(
+      'check_config_notification_from_contact',
+      E::ts('Notification From Contact'),
+      array("class" => "huge")
+    );
 
     $this->add(
       'checkbox',
@@ -149,6 +154,7 @@ class CRM_Configchecker_Form_Settings extends CRM_Core_Form {
     return array(
       'check_config_notification_email',
       'check_config_notification_from_email',
+      'check_config_notification_from_contact',
       'check_php_config_max_execution_time',
       'check_php_config_memory_limit',
       'check_php_config_max_input_time',

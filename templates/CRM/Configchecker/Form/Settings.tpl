@@ -33,6 +33,12 @@
     <div class="clear"></div>
   </div>
 
+  <div class="crm-section">
+    <div class="label">{$form.check_config_notification_from_contact.label} <a onclick='CRM.help("{ts domain='de.systopia.configchecker'}Notification From Contact{/ts}", {literal}{"id":"id-configchecker-notification-from-contact","file":"CRM\/Configchecker\/Form\/Settings"}{/literal}); return false;' href="#" title="{ts domain='de.systopia.configchecker'}Help{/ts}" class="helpicon">&nbsp;</a></div>
+    <div class="content">{$form.check_config_notification_from_contact.html}</div>
+    <div class="clear"></div>
+  </div>
+
   <br/>
   <h3>{ts domain='de.systopia.configchecker'}Expected PHP Configuration{/ts}</h3><br/>
 
