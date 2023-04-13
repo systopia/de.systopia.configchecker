@@ -9,7 +9,7 @@ use Civi\Test\TransactionalInterface;
  * This is a generic test class implemented with PHPUnit.
  * @group headless
  */
-class api_v3_Configchecker_VerifyconfigurationTest extends \PHPUnit_Framework_TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class api_v3_Configchecker_VerifyconfigurationTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
   use \Civi\Test\Api3TestTrait;
 
   /**
