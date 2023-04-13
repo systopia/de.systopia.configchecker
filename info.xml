@@ -18,10 +18,19 @@
   <version>0.4</version>
   <develStage>beta</develStage>
   <compatibility>
-    <ver>5.0</ver>
+    <ver>5.27</ver>
   </compatibility>
   <comments>Currently only PHP parameters at runtime can be checked and verified. If configured, an Notification Email can be sent either when visiting the status site or once a day.</comments>
   <civix>
     <namespace>CRM/Configchecker</namespace>
+    <format>23.02.1</format>
   </civix>
+  <mixins>
+    <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
+  </mixins>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
 </extension>
