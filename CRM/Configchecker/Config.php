@@ -54,7 +54,7 @@ class CRM_Configchecker_Config {
    */
   public function getSettings() {
     if (self::$settings === NULL) {
-      self::$settings = CRM_Core_BAO_Setting::getItem('de.systopia.Configchecker', 'Configchecker_settings');
+      self::$settings = Civi::settings()->get('Configchecker_settings');
     }
 
     return self::$settings;
@@ -67,7 +67,7 @@ class CRM_Configchecker_Config {
    */
   public function setSettings($settings) {
     self::$settings = $settings;
-    CRM_Core_BAO_Setting::setItem($settings, 'de.systopia.Configchecker', 'Configchecker_settings');
+    Civi::settings()->set('Configchecker_settings', $settings);
   }
 
  }
